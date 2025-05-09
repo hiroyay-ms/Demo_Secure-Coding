@@ -16,7 +16,7 @@ public static class ProductEndpoints
         app.MapGet("/api/catalog/category/{category}", GetProductCategoryByName)
             .WithName("GetProductCategoryByName");
 
-        app.MapGet("/api/catalog/category/{id}/products", GetProductsByCategoryId)
+        app.MapGet("/api/catalog/products/{id}", GetProductsByCategoryId)
             .WithName("GetProductsByCategoryId");
     }
 

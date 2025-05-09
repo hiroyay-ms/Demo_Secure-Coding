@@ -17,7 +17,7 @@ namespace Web.Pages.Products
             _httpClientFactory = httpClientFactory;
         }
 
-        public List<Product> Products { get; set; } = default!;
+        public List<Product> Products { get; set; } = new List<Product>();
 
         [BindProperty(SupportsGet = true)]
         public string? Id { get; set; } = "5";
@@ -27,7 +27,7 @@ namespace Web.Pages.Products
             ViewData["Message"] = $"êªïiÉJÉeÉSÉäî‘çÜ - {Id}";
             string jsonString = string.Empty;
 
-            string actionName = $"api/catalog/category/{Id}/products";
+            string actionName = $"api/catalog/products/{Id}";
 
             var httpClient = _httpClientFactory.CreateClient("BackendApi");
             var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, actionName);
