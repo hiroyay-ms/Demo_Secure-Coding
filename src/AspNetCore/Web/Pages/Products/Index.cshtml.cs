@@ -17,7 +17,7 @@ namespace Web.Pages.Products
             _httpClientFactory = httpClientFactory;
         }
 
-        public List<Product> Products { get; set; } = default!;
+        public List<Product> Products { get; set; } = new List<Product>();
 
         [BindProperty(SupportsGet = true)]
         public string? Id { get; set; } = "5";
