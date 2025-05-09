@@ -64,11 +64,8 @@ public static class ProductEndpoints
         return productCategories.Count == 0 ? TypedResults.NotFound() : TypedResults.Ok(productCategories);
     }
 
-    static async Task<IResult> GetProductsByCategoryId(int id, AdventureWorksContext db)
+    static async Task<IResult> GetProductsByCategoryId(string id, AdventureWorksContext db)
     {
-        if (id < 5)
-            return TypedResults.BadRequest();
-
         var conn = db.Database.GetDbConnection() as SqlConnection;
         if (conn == null)
             return TypedResults.Problem("Database connection is null.");
@@ -80,7 +77,7 @@ public static class ProductEndpoints
 
         using (var cmd = conn.CreateCommand())
         {
-            var qyery = $"SELECT * FROM SalesLT.Product WHERE ProductCategoryID = {id}" ;
+            var qyery = $"SELECT * FROM SalesLT.Product WHERE ProductCategoryID = " + id;
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = qyery;
