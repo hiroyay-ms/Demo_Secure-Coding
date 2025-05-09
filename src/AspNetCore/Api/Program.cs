@@ -1,6 +1,6 @@
-using Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

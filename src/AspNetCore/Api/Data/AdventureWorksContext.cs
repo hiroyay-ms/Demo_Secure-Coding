@@ -14,7 +14,7 @@ namespace Api.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string connectionString = "Server=localhost;Database=AdventureWorksLT;User Id=sa;Password=your_password;";
+                string connectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING") ?? throw new InvalidOperationException("Connection string 'SQL_CONNECTION_STRING' not found.")
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
