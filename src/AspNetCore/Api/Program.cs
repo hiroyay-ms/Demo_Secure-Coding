@@ -23,5 +23,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.RegisterWeatherForecastEndpoints();
+app.RegisterProductEndpoints();
 
 app.Run();

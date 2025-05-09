@@ -5,16 +5,19 @@ namespace Api.Data
 {
     public class AdventureWorksContext : DbContext
     {
-        public AdventureWorksContext(DbContextOptions<AdventureWorksContext> options)
+        private readonly IConfiguration _configuration;
+
+        public AdventureWorksContext(DbContextOptions<AdventureWorksContext> options, IConfiguration configuration)
             : base(options)
         {
+            _configuration = configuration;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string connectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING") ?? throw new InvalidOperationException("Connection string 'SQL_CONNECTION_STRING' not found.")
+                string connectionString = _configuration.GetValue<string>("SQL_CONNECTION_STRING") ?? throw new InvalidOperationException("Connection string 'SQL_CONNECTION_STRING' not found.");
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
