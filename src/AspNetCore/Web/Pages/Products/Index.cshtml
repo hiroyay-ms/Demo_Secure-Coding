@@ -1,0 +1,52 @@
+﻿@page "{Id?}"
+@model Web.Pages.Products.IndexModel
+@{
+}
+@using Web.Models;
+
+<h2>Products</h2>
+
+<div class="row">
+    <div class="search-header">
+        <form method="get">
+            <input name="Id" type="text" placeholder="検索ワードを入力" />
+            <input type="submit" value="検索" />
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="search-message">
+        @Html.Raw(ViewData["Message"])
+    </div>
+
+    <div class="search-result">
+        <table>
+            <thead>
+                <tr>
+                    <th width="40">Id</th>
+                    <th width="250">Name</th>
+                    <th width="150">Number</th>
+                    <th>Color</th>
+                    <th>List Price $</th>
+                    <th width="150">Sell Start Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var p in Model.Products)
+                {
+                    <tr>
+                        <td>@p.ProductID</td>
+                        <td>@p.ProductName</td>
+                        <td>@p.ProductNumber</td>
+                        <td>@p.Color</td>
+                        <td>@p.ListPrice</td>
+                        <td>@p.SellStartDate</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

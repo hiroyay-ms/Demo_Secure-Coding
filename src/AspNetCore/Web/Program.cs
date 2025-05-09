@@ -1,5 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
 
+var baseAddress = builder.Configuration["API_BASE_ADDRESS"] ?? throw new InvalidOperationException("API base address 'API_BASE_ADDRESS' not found.");
+builder.Services.AddHttpClient("BackendApi", client =>
+{
+    client.BaseAddress = new Uri(baseAddress);
+});
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 
