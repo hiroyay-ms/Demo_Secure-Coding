@@ -44,7 +44,7 @@ namespace Api.Models
 
         public byte[] ThumbNailPhoto { get; set; } = Array.Empty<byte>();
 
-        public string ThumbnailPhotoFileName { get; set; } = string.Empty!;
+        public string? ThumbnailPhotoFileName { get; set; } = string.Empty!;
 
         [Required]
         public Guid rowguid { get; set; }
